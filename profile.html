@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your profile</title>
+  <link rel="stylesheet" href="style.css">  <!-- তোমার CSS ফাইল যদি থাকে -->
+  
+
+</head>
+
+<body>
+
+  <!-- ================= Navbar ================= -->
+  <nav class="navbar">
+    <div class="logo" style="text-align: center;">Your Profile</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="menu" id="menu">
+      <a href="profile.html">Profile</a>
+      <a href="index.html">Home</a>
+      <a href="QR Decoder.html">QR Decoder</a>
+      <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
+      <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="profile">
+      <img id="profile-pic" src="" alt="প্রোফাইল পিকচার">
+      <span id="profile-name">Md Riyad Hasan</span>
+    </div>
+
+    
+
+    <input type="text" id="name-input" placeholder="নতুন নাম লিখো (অপশনাল)">
+    <input type="file" id="pic-input" accept="image/*">
+    <button onclick="updateProfile()">Update your profile</button>
+<p style="text-align: centre;">©2026 QR Generator and Decoder.All rights reserved.
+  <!--Tab to edit-->
+</p>
+    <!-- এখানে তোমার বাকি QR জেনারেটরের কোড যোগ করো -->
+    <!-- উদাহরণ: -->
+    <!-- <input type="text" id="qr-text" placeholder="QR-এর জন্য টেক্সট লিখো"> -->
+    <!-- <button onclick="generateQR()">জেনারেট করো</button> -->
+    <!-- <div id="qr-preview"></div> -->
+  </div>
+<script type="text/javascript" src="profile.min.js"></script>
+
+</body>
+</html>
