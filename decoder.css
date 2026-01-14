@@ -1,0 +1,130 @@
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+                /* ================= Navbar ================= */
+        .navbar {
+            height: 60px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            position: fixed;   /* <-- fixed করে top এ রাখলাম */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;     /* <-- সব content এর উপরে দেখাবে */
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* ================= Hamburger ================= */
+        .hamburger {
+            width: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            background: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            z-index: 999;  /* <-- menu content এর উপরে থাকবে */
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 220px;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                padding: 20px;
+                transition: 0.4s;
+            }
+
+            .menu.active {
+                right: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            text-align: center;
+        }
+        h1 { margin-bottom: 25px; font-size: 2.2em; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        #reader {
+            width: 100% !important;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            border: 3px solid #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        #result {
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 12px;
+            min-height: 120px;
+            word-break: break-all;
+            margin: 20px 0;
+            font-size: 1.1em;
+            text-align: left;
+        }
+        .wifi-info { margin: 10px 0; font-weight: bold; }
+        .wifi-info span { color: #ffeb3b; }
+        button {
+            background: #fff;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px 8px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        input[type="file"] { margin: 15px 0; }
+        #status { font-size: 1.1em; margin: 10px 0; }
+    
