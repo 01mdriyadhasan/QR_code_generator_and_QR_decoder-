@@ -1,0 +1,172 @@
+
+        /* ================= Body ================= */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, black 0%, #2575fc 100%);
+            color: #fff;
+            margin: 0;
+            padding-top: 60px;  /* <-- navbar height অনুযায়ী padding -->
+            min-height: 100vh;
+        }
+
+        /* ================= Navbar ================= */
+        .navbar {
+            height: 60px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            position: fixed;   /* <-- fixed করে top এ রাখলাম */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;     /* <-- সব content এর উপরে দেখাবে */
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* ================= Hamburger ================= */
+        .hamburger {
+            width: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            background: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            z-index: 999;  /* <-- menu content এর উপরে থাকবে */
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 220px;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                padding: 20px;
+                transition: 0.4s;
+            }
+
+            .menu.active {
+                right: 0;
+            }
+        }
+
+        /* ================= Container ================= */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            text-align: center;
+            margin: 20px auto;  /* <-- container centralize */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1em;
+        }
+
+        button {
+            background: #fff;
+            color: #6a11cb;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #qr-preview {
+            margin: 20px 0;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        #history {
+            margin-top: 30px;
+            text-align: left;
+        }
+       
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item img {
+            width: 50px;
+            height: 50px;
+        }
+        .hist-actions{display:flex; gap:6px}
+
+        #profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        }
