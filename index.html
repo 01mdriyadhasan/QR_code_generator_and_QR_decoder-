@@ -1,65 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anime Holl</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
 
-  <!-- Tidio Chatbot Code -->
-  <script src="//code.tidio.co/rvkaibt18tuproxfsh9c5rj0hrtx5qla.js" async></script>
+    <!-- QRCode JS -->
+    <script src="qrcode.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>
-    <h1>Anime Holl</h1>
-  </header>
+    <!-- ================= Navbar ================= -->
+    <nav class="navbar">
+        <div class="logo">QR Code Generator</div>
 
-  <main class="gallery">
-    <!-- First Card -->
-    <div class="card">
-      <video width="100%" controls>
-        <source src="VID_20250425_122519.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="info">
-        <span class="tag">Full Video</span>
-        <h2>Attack on Titan</h2>
-        <p>Rating: <span class="rating">9.0</span></p>
-        <p>Release: Apr 01, 2021</p>
-      </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="profile.html">Profile</a>
+            <a href="index.html">Home</a>
+            <a href="QR Decoder.html">QR Decoder</a>
+            <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
+            <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ================= Container ================= -->
+
+
+        <input type="text" id="text-input" placeholder="Input your text">
+        <button onclick="generateQR()">Generate the text</button>
+
+        <div id="qr-preview"></div>
+        <button id="download-btn" style="display: none;" onclick="downloadQR()">Download now</button>
+
+        <div id="history">
+            <h2>History</h2>
+            <button class="btn danger" onclick="clearHistory()">Clear all history </button>
+            <div id="history-list"></div>
+        </div>
+        <p style="text-align: centre;">©2026 QR Generator.All rights reserved.
+            <!--Tab to edit-->
+        </p>
     </div>
 
-    <!-- Second Card -->
-    <div class="card">
-      <video width="100%" controls>
-        <source src="VID_20250425_122519.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="info">
-        <span class="tag">Trailer</span>
-        <h2>Attack on Titan</h2>
-        <p>Rating: <span class="rating">9.0</span></p>
-        <div class="release"></div>
-      </div>
-    </div>
-
-    <!-- Third Card -->
-    <div class="card">
-      <video width="100%" controls>
-        <source src="VID_20250425_122519.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    <table border="1px" text align="center" cellpadding="0">
-    </table>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2023 Anime Holl. All rights reserved.</p>
-  </footer>
-
+    <!-- ================= JS ================= -->
+   <script type="text/javascript" src="index.min.js"></script>
 </body>
-</html>
+  </html>
