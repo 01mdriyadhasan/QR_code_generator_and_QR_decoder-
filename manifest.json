@@ -1,6 +1,6 @@
 {
-  "name": "QR Tools by Md Riyad",
-  "short_name": "QR Tools",
+  "name": "QR_generator_and_decoder",
+  "short_name": "QR-Generator",
   "description": "অফলাইন QR কোড জেনারেটর এবং ডিকোডার অ্যাপ",
   "start_url": "/QR_code_generator_and_QR_decoder-/",
   "display": "standalone",
@@ -20,7 +20,15 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-    "screenshots": [
+  ],
+  "id": "https://01mdriyadhasan.github.io/QR_code_generator_and_QR_decoder-/",
+  "categories": [
+    "education",
+    "navigation",
+    "photo",
+    "shopping"
+  ]
+  "screenshots": [
   {
     "src": "/QR_code_generator_and_QR_decoder-/screenshot1.png",
     "sizes": "1080x1920",
@@ -37,5 +45,4 @@
   }
   // আরও যোগ করতে পারো
 ],
-  ]
 }
