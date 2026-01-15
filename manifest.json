@@ -1,33 +1,16 @@
-{
-  "name": "QR_generator_and_decoder",
-  "short_name": "QR-Generator",
-  "description": "অফলাইন QR কোড জেনারেটর এবং ডিকোডার অ্যাপ",
-  "start_url": "/QR_code_generator_and_QR_decoder-/",
-  "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#667eea",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "id": "https://01mdriyadhasan.github.io/QR_code_generator_and_QR_decoder-/",
-  "categories": [
-    "education",
-    "navigation",
-    "photo",
-    "shopping"
-  ]
-
-],
-}
+const urlsToCache = [
+  '/',
+  '/QR_code_generator_and_QR_decoder-/index.html',
+  '/QR_code_generator_and_QR_decoder-/manifest.json',
+  '/QR_code_generator_and_QR_decoder-/icon-192.png',
+  '/QR_code_generator_and_QR_decoder-/icon-512.png',
+  '/QR_code_generator_and_QR_decoder-/style.css',
+  '/QR_code_generator_and_QR_decoder-/decoder.css',
+  '/QR_code_generator_and_QR_decoder-/qrcode.min.js',
+  '/QR_code_generator_and_QR_decoder-/profile.min.js',
+  '/QR_code_generator_and_QR_decoder-/index.min.js',
+  '/QR_code_generator_and_QR_decoder-/decoder.mi.js',
+  '/QR_code_generator_and_QR_decoder-/QR Decoder.html',
+  '/QR_code_generator_and_QR_decoder-/profile.html'
+  // তোমার পুরোনো লিস্ট যাই থাকুক না কেন
+];
