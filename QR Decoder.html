@@ -33,13 +33,22 @@
 
     <div id="reader"></div>
 
+    <!-- Camera control button -->
+    <div style="margin-top:8px;">
+      <button id="toggle-camera-btn" onclick="toggleCamera()">Turn Camera Off</button>
+    </div>
+
     <div id="status">Camera opening......</div>
 
     <div id="result">Let’s see result here...</div>
 
     <button id="copyBtn" style="display:none;">টেক্সট কপি করো</button>
     <br>
+
     <input type="file" id="qr-file" accept="image/*">
+    <!-- Upload file button -->
+    <button id="upload-btn" onclick="uploadAndScan()">Upload and Scan</button>
+
     <p style="text-align: center;">©2026 QR Code Decoder. All rights reserved.</p>
   </div>
 
