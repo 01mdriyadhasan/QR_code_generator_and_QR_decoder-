@@ -13,4 +13,21 @@ const urlsToCache = [
   '/QR_code_generator_and_QR_decoder-/QR Decoder.html',
   '/QR_code_generator_and_QR_decoder-/profile.html'
   // তোমার পুরোনো লিস্ট যাই থাকুক না কেন
+  "screenshots": [
+  {
+    "src": "/QR_code_generator_and_QR_decoder-/screenshot1.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "wide",
+    "label": "QR কোড জেনারেটর"
+  },
+  {
+    "src": "/QR_code_generator_and_QR_decoder-/screenshot2.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "QR স্ক্যানার"
+  }
+  // আরও যোগ করতে পারো
+],
 ];
