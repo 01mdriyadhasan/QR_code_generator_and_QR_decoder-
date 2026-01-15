@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Decoder / Scanner</title>
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-    <link rel="stylesheet" href="decoder.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Decoder / Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <link rel="stylesheet" href="decoder.css">
+  <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
 </head>
 <body>
-	<!-- ================= Navbar ================= -->
-    <nav class="navbar">
-        <div class="logo">Decoder</div>
+  <!-- ================= Navbar ================= -->
+  <nav class="navbar">
+    <div class="logo">Decoder</div>
 
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="menu" id="menu">
-            <a href="profile.html">Profile</a>
-            <a href="index.html">Home</a>
-            <a href="QR Decoder.html">QR Decoder</a>
-            <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
-            <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
-        </div>
-    </nav>
-    <div class="container">
-        <h1>QR Code Scanner & Decoder (WiFi Enhanced)</h1>
-        
-        <div id="reader"></div>
-        
-      <div id="status">Camera opening......</div>
-        
-        <div id="result">Let’s see result here...
-        </div>
-       
-        
-        <button id="copyBtn" style="display:none;">টেক্সট কপি করো</button>
-        <br>
-        <input type="file" id="qr-file" accept="image/*">
-        <p style="text-align: centre;">©2026 QR Code  Decoder.All rights reserved.
-    <!--Tab to edit-->
-</p>
-        
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-   <script type="text/javascript" src="sw.js"></script>
-    
-<script type="text/javascript" src="decoder.mi.js"></script>
 
+    <div class="menu" id="menu">
+      <a href="profile.html">Profile</a>
+      <a href="index.html">Home</a>
+      <a href="QR Decoder.html">QR Decoder</a>
+      <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
+      <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>QR Code Scanner & Decoder (WiFi Enhanced)</h1>
+
+    <div id="reader"></div>
+
+    <div id="status">Camera opening......</div>
+
+    <div id="result">Let’s see result here...</div>
+
+    <button id="copyBtn" style="display:none;">টেক্সট কপি করো</button>
+    <br>
+    <input type="file" id="qr-file" accept="image/*">
+    <p style="text-align: center;">©2026 QR Code Decoder. All rights reserved.</p>
+  </div>
+
+  <script type="text/javascript" src="decoder.mi.js"></script>
+  <script type="text/javascript" src="register-sw.js"></script>
 </body>
 </html>

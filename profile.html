@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Your profile</title>
-  <link rel="stylesheet" href="style.css">  <!-- তোমার CSS ফাইল যদি থাকে -->
-  
-
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
 </head>
 
 <body>
-
   <!-- ================= Navbar ================= -->
   <nav class="navbar">
     <div class="logo" style="text-align: center;">Your Profile</div>
@@ -36,22 +34,16 @@
       <span id="profile-name">User1234</span>
     </div>
 
-    
-
     <input type="text" id="name-input" placeholder="Enter Your Name ">
     <input type="file" id="pic-input" accept="image/*">
     <button onclick="updateProfile()">Update your profile</button>
-<p style="text-align: centre;">©2026 QR Generator and Decoder.All rights reserved.
-  <!--Tab to edit-->
-</p>
-    <!-- এখানে তোমার বাকি QR জেনারেটরের কোড যোগ করো -->
-    <!-- উদাহরণ: -->
-    <!-- <input type="text" id="qr-text" placeholder="QR-এর জন্য টেক্সট লিখো"> -->
-    <!-- <button onclick="generateQR()">জেনারেট করো</button> -->
-    <!-- <div id="qr-preview"></div> -->
-  </div>
-<script type="text/javascript" src="profile.min.js"></script>
-  <script type="text/javascript" src="sw.js"></script>
 
+    <p style="text-align: center;">©2026 QR Generator and Decoder. All rights reserved.</p>
+
+    <!-- এখানে তোমার বাকি QR জেনারেটরের কোড যোগ করো -->
+  </div>
+
+  <script type="text/javascript" src="profile.min.js"></script>
+  <script type="text/javascript" src="register-sw.js"></script>
 </body>
 </html>

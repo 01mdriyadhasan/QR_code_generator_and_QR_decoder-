@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
 
-    <!-- QRCode JS -->
-    <script src="qrcode.min.js"></script>
+  <!-- QRCode JS -->
+  <script src="qrcode.min.js"></script>
 
   <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
-<meta name="theme-color" content="#667eea">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="/QR_code_generator_and_QR_decoder-/icon-192.png">
+  <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="/QR_code_generator_and_QR_decoder-/icon-192.png">
 </head>
 
 <body>
-    <!-- ================= Navbar ================= -->
-    <nav class="navbar">
-        <div class="logo">QR Code Generator</div>
+  <!-- ================= Navbar ================= -->
+  <nav class="navbar">
+    <div class="logo">QR Code Generator</div>
 
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="menu" id="menu">
-            <a href="profile.html">Profile</a>
-            <a href="index.html">Home</a>
-            <a href="QR Decoder.html">QR Decoder</a>
-            <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
-            <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
-        </div>
-    </nav>
-
-    <!-- ================= Container ================= -->
-
-
-        <input type="text" id="text-input" placeholder="Input your text">
-        <button onclick="generateQR()">Generate the text</button>
-
-        <div id="qr-preview"></div>
-        <button id="download-btn" style="display: none;" onclick="downloadQR()">Download now</button>
-
-        <div id="history">
-            <h2>History</h2>
-            <button class="btn danger" onclick="clearHistory()">Clear all history </button>
-            <div id="history-list"></div>
-        </div>
-        <p style="text-align: centre;">©2026 QR Generator.All rights reserved.
-            <!--Tab to edit-->
-        </p>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <!-- ================= JS ================= -->
-   <script type="text/javascript" src="index.min.js"></script>
-    <script type="text/javascript" src="<sw.js"></script>
+    <div class="menu" id="menu">
+      <a href="profile.html">Profile</a>
+      <a href="index.html">Home</a>
+      <a href="QR Decoder.html">QR Decoder</a>
+      <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
+      <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ================= Container ================= -->
+  <div class="container">
+    <input type="text" id="text-input" placeholder="Input your text">
+    <button onclick="generateQR()">Generate the text</button>
+
+    <div id="qr-preview"></div>
+    <button id="download-btn" style="display: none;" onclick="downloadQR()">Download now</button>
+
+    <div id="history">
+      <h2>History</h2>
+      <button class="btn danger" onclick="clearHistory()">Clear all history </button>
+      <div id="history-list"></div>
+    </div>
+
+    <p style="text-align: center;">©2026 QR Generator. All rights reserved.
+      <!--Tab to edit-->
+    </p>
+  </div>
+
+  <!-- ================= JS ================= -->
+  <script type="text/javascript" src="index.min.js"></script>
+  <script type="text/javascript" src="register-sw.js"></script>
 </body>
-  </html>
+</html>
