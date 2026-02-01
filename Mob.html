@@ -104,7 +104,7 @@
     <input type="text" id="urlInput" placeholder="https://example.com" value="https://www.google.com" />
     <button onclick="loadSite()">লোড করো</button>
   </div>
-
+<div class="gcse-search"></div>
   <div class="phone-frame" id="phone">
     <div class="power-button"></div>
     <iframe id="simIframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
@@ -129,9 +129,14 @@
       iframe.src = url;
       phone.classList.add("visible");
       
+      
       // স্ক্রল করে ফোনের কাছে নিয়ে যাও
       phone.scrollIntoView({ behavior: "smooth" });
     }
+
+   async src="https://cse.google.com/cse.js?cx=f1c1290cf49ff435b"
+    
+
   </script>
 
 </body>
