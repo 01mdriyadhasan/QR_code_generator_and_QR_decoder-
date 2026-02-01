@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>মোবাইল সিমুলেটর</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      font-family: Arial, sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    input, button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+    
+    input {
+      width: 350px;
+      max-width: 90%;
+    }
+    
+    button {
+      background: #0066ff;
+      color: white;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #0055dd;
+    }
+    
+    .phone-frame {
+      width: 380px;
+      height: 780px;
+      max-width: 95vw;
+      background: #000;
+      border: 16px solid #000;
+      border-radius: 55px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      position: relative;
+      overflow: hidden;
+      display: none; /* শুরুতে লুকানো থাকবে */
+    }
+    
+    .phone-frame.visible {
+      display: block;
+    }
+    
+    /* Notch / Status bar */
+    .phone-frame::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 30px;
+      background: #000;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 10;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
+    }
+    
+    .power-button {
+      position: absolute;
+      right: -16px;
+      top: 120px;
+      width: 4px;
+      height: 80px;
+      background: #333;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>মোবাইল সিমুলেটর</h1>
+    <p>নিচে URL দাও (https:// দিয়ে শুরু করতে হবে)</p>
+    
+    <input type="text" id="urlInput" placeholder="https://example.com" value="https://www.google.com" />
+    <button onclick="loadSite()">লোড করো</button>
+  </div>
+
+  <div class="phone-frame" id="phone">
+    <div class="power-button"></div>
+    <iframe id="simIframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
+  </div>
+
+  <script>
+    function loadSite() {
+      const url = document.getElementById("urlInput").value.trim();
+      if (!url) {
+        alert("দয়া করে একটা URL দাও!");
+        return;
+      }
+      
+      if (!url.startsWith("http")) {
+        alert("URL-এ https:// বা http:// দিয়ে শুরু করো");
+        return;
+      }
+      
+      const iframe = document.getElementById("simIframe");
+      const phone = document.getElementById("phone");
+      
+      iframe.src = url;
+      phone.classList.add("visible");
+      
+      // স্ক্রল করে ফোনের কাছে নিয়ে যাও
+      phone.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
