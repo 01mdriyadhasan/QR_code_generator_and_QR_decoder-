@@ -7,13 +7,13 @@
   <style>
     body { margin: 0; padding: 20px; background: #111; font-family: Arial, sans-serif; color: white; min-height: 100vh; display:flex; flex-direction:column; align-items:center;}
     .container { text-align:center; margin-bottom:20px;}
-    input, button { padding:10px 12px; font-size:15px; border-radius:8px; border:none; }
+    button, input { padding:10px 12px; font-size:15px; border-radius:8px; border:none; }
     .phone-frame { width:380px; height:780px; max-width:95vw; background:#000; border:16px solid #000; border-radius:55px; position:relative; overflow:hidden; display:none;}
     .phone-frame.visible { display:block; }
     /* search bar inside phone */
     .phone-topbar { position:absolute; top:0; left:0; right:0; height:56px; background:linear-gradient(#111,#222); display:flex; align-items:center; padding:8px; gap:8px; z-index:20; box-sizing:border-box; }
-    .phone-topbar input { flex:1; width:0; border-radius:8px; }
-    .phone-topbar button { background:#0066ff; color:#fff; }
+    .phone-topbar input { flex:1; width:0; border-radius:8px; padding:8px; }
+    .phone-topbar button { background:#0066ff; color:#fff; padding:8px 12px; }
     iframe { width:100%; height:100%; border:none; display:block; }
     .notice { margin-top:10px; color:#ffdd57; }
     .open-btn { margin-left:8px; background:#00aa66; color:#fff; padding:6px 8px; border-radius:6px; border:none; cursor:pointer; }
@@ -23,16 +23,15 @@
 
   <div class="container">
     <h1>মোবাইল সিমুলেটর</h1>
-    <p>নীচে URL দিন (http:// বা https:// দিয়ে শুরু করুন)</p>
-    <input id="urlInputTop" type="text" placeholder="https://example.com" value="https://example.com" style="width:320px;max-width:80%;"/>
-    <button onclick="openPhoneWithUrl()">ফোনে দেখুন</button>
+    <p>সার্চ বার ফোনের ভেতরে আছে — ওপেন করে ইউআরএল দিন এবং লোড করুন।</p>
+    <button onclick="document.getElementById('phone').classList.toggle('visible'); document.getElementById('phone').scrollIntoView({behavior:'smooth'});">ফোন খুলুন/বন্ধ করুন</button>
     <div id="noticeTop" class="notice" style="display:none"></div>
   </div>
 
   <div class="phone-frame" id="phone">
     <!-- top search bar INSIDE phone -->
     <div class="phone-topbar">
-      <input id="phoneUrl" type="text" placeholder="https://example.com" />
+      <input id="phoneUrl" type="text" placeholder="URL দিন" />
       <button id="phoneLoadBtn">লোড</button>
     </div>
 
@@ -45,43 +44,28 @@
       catch(e){ return false; }
     }
 
-    // উইন্ডোর উপরের ইনপুট থেকে ফোন খুলে একই ইউআরএল পাঠাবে
-    function openPhoneWithUrl(){
-      const top = document.getElementById('urlInputTop') || document.getElementById('urlInput');
-      const val = (top && top.value || '').trim();
-      if(!val){ alert('URL দিন'); return; }
-      if(!isValidHttpUrl(val)){ alert('সঠিক http/https URL দিন'); return; }
-      document.getElementById('phoneUrl').value = val;
-      loadIntoPhone(val);
-      document.getElementById('phone').classList.add('visible');
-      document.getElementById('phone').scrollIntoView({behavior:'smooth'});
-    }
-
-    // ফোনের ভিতরের সার্চ বার/বোতন থেকে লোড করার ফাংশন
     function loadIntoPhone(url){
       const iframe = document.getElementById('simIframe');
       const notice = document.getElementById('noticeTop');
       notice.style.display = 'none'; notice.innerHTML = '';
 
-      // সহজ নিরাপত্তা: javascript: স্কিম ব্লক
+      if(!url){ alert('URL দিন'); return; }
       if(url.trim().toLowerCase().startsWith('javascript:')){ alert('এই ধরনের স্কিম অনুমোদন নেই'); return; }
-      if(!isValidHttpUrl(url)){ alert('ভুল URL'); return; }
+      if(!isValidHttpUrl(url)){ alert('সঠিক http/https URL দিন'); return; }
 
       let loaded = false;
       iframe.onload = () => { loaded = true; notice.style.display='none'; };
 
       iframe.src = url;
 
-      // যদি ৩সেকেন্ডে লোড না হয়, সম্ভবত X-Frame-Options দ্বারা ব্লক করা হয়েছে
       setTimeout(() => {
         if(!loaded){
           notice.style.display = 'block';
-          notice.innerHTML = 'এই সাইটটি iframe-এ লোড হচ্ছে না — সম্ভবত X-Frame-Options/CSP দ্বারা ব্লক করা। <button class="open-btn" onclick="window.open(\''+url+'\', \'_blank\')">নতুন ট্যাবে খুলুন</button>';  
+          notice.innerHTML = 'এই সাইটটি iframe-এ লোড হচ্ছে না — সম্ভবত X-Frame-Options/CSP দ্বারা ব্লক করা। <button class="open-btn" onclick="window.open('+url+'\u007C, \u0027_blank\u0027)">নতুন ট্যাবে খুলুন</button>';
         }
       }, 3000);
     }
 
-    // ফোনের ভিতরের ইনপুটে Enter চাপলে লোড করাবে
     const phoneUrlInput = document.getElementById('phoneUrl');
     const phoneLoadBtn = document.getElementById('phoneLoadBtn');
 
@@ -94,10 +78,8 @@
       if(e.key === 'Enter'){ loadIntoPhone(phoneUrlInput.value.trim()); }
     });
 
-    // পেজ লোডে টপ ইনপুট ভ্যালু ফোন ইনপুটে কপি করে রাখা (বিধি)
     document.addEventListener('DOMContentLoaded', () => {
-      const top = document.getElementById('urlInputTop');
-      if(top && phoneUrlInput) phoneUrlInput.value = top.value || '';
+      if(phoneUrlInput) phoneUrlInput.value = 'https://example.com';
     });
   </script>
 
