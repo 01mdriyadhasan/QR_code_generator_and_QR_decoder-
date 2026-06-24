@@ -3,46 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Profile</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
+  <title>Profile</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: linear-gradient(135deg, black 0%, #2575fc 100%); color: #fff; min-height: 100vh; padding-top: 80px; padding: 20px; }
+    .navbar { height: 60px; background: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .navbar a { color: #fff; text-decoration: none; margin: 0 15px; }
+    .container { max-width: 500px; margin: 20px auto; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px); }
+    input, button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; }
+    button { background: #0066ff; color: white; cursor: pointer; font-weight: bold; }
+    button:hover { background: #0052cc; }
+    #profile-pic { width: 100px; height: 100px; border-radius: 50%; margin: 20px auto; display: block; }
+  </style>
 </head>
 <body>
-  <!-- ================= Navbar ================= -->
   <nav class="navbar">
-    <div class="logo">Your Profile</div>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="menu" id="menu">
+    <div style="font-size: 20px;">Profile</div>
+    <div>
       <a href="index.html">Home</a>
-      <a href="login.html">Login / Sign Up</a>
-      <a href="QR%20Decoder.html">QR Decoder</a>
-      <a href="Mob.html">Mobile Simu</a>
-      <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
-      <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="decoder.html">Decoder</a>
     </div>
   </nav>
 
   <div class="container">
     <h1>Your Profile</h1>
-    <div id="profile">
-      <img id="profile-pic" src="https://via.placeholder.com/80?text=You" alt="Profile">
-      <span id="profile-name">User</span>
-    </div>
-
-    <input type="text" id="name-input" placeholder="Enter your name">
-    <input type="file" id="pic-input" accept="image/*">
+    <img id="profile-pic" src="https://via.placeholder.com/100?text=Profile" />
+    <input type="text" id="name" placeholder="Your Name" />
+    <input type="file" id="pic" accept="image/*" />
     <button onclick="updateProfile()">Update Profile</button>
-
-    <p style="text-align: center; margin-top: 30px;">©2026 QR Generator and Decoder. All rights reserved.</p>
   </div>
 
-  <script type="text/javascript" src="profile.min.js"></script>
-  <script type="text/javascript" src="register-sw.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const name = localStorage.getItem('profileName');
+      const pic = localStorage.getItem('profilePic');
+      if (name) document.getElementById('name').value = name;
+      if (pic) document.getElementById('profile-pic').src = pic;
+    });
+
+    function updateProfile() {
+      const name = document.getElementById('name').value;
+      const file = document.getElementById('pic').files[0];
+      
+      if (name) localStorage.setItem('profileName', name);
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          localStorage.setItem('profilePic', e.target.result);
+          document.getElementById('profile-pic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+      
+      alert('Profile updated!');
+    }
+  </script>
 </body>
 </html>

@@ -4,73 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Generator</title>
-
-  <!-- QRCode.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
-  <meta name="theme-color" content="#667eea">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="apple-touch-icon" href="/QR_code_generator_and_QR_decoder-/icon-192.png">
+  <link rel="stylesheet" href="style.css?v=" + new Date().getTime()>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: linear-gradient(135deg, black 0%, #2575fc 100%); color: #fff; min-height: 100vh; padding-top: 70px; }
+    .navbar { height: 60px; background: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .navbar a { color: #fff; text-decoration: none; margin: 0 15px; }
+    .navbar a:hover { color: #0066ff; }
+    .container { max-width: 600px; margin: 20px auto; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px); }
+    input, button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 16px; }
+    button { background: #0066ff; color: white; cursor: pointer; font-weight: bold; }
+    button:hover { background: #0052cc; }
+    #qr-preview { text-align: center; margin: 20px 0; }
+    #qr-preview canvas { max-width: 100%; }
+    .history-item { background: rgba(255,255,255,0.2); padding: 10px; margin: 10px 0; border-radius: 5px; word-break: break-all; }
+  </style>
 </head>
-
 <body>
-  <!-- ================= Navbar ================= -->
   <nav class="navbar">
-    <div class="logo">QR Code Generator</div>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="menu" id="menu">
+    <div style="font-size: 20px; font-weight: bold;">QR Generator</div>
+    <div>
       <a href="index.html">Home</a>
-      <a href="login.html">Login / Sign Up</a>
+      <a href="login.html">Login</a>
       <a href="profile.html">Profile</a>
-      <a href="QR%20Decoder.html">QR Decoder</a>
-      <a href="Mob.html">Mobile Simu</a>
-      <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
-      <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
-      <span id="user-info" style="color: #ffcc00; margin-left: 20px;"></span>
-      <button id="logout-btn" style="display: none; background: #ff4444; color: white; border: none; padding: 8px 16px; cursor: pointer; border-radius: 5px;" onclick="logout()">Log Out</button>
+      <a href="decoder.html">Decoder</a>
     </div>
   </nav>
 
-  <!-- ================= Auth Section (যদি লগইন না থাকে) ================= -->
-  <div id="auth-section" style="display: none; margin: 20px; padding: 20px; background: #222; border-radius: 10px; max-width: 500px; margin: 20px auto;">
-    <h3>Log In or Sign Up to Save QR History</h3>
-    <input id="email" type="email" placeholder="Enter email" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; box-sizing: border-box;">
-    <input id="password" type="password" placeholder="Enter password" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; box-sizing: border-box;">
-    <button onclick="signUp()" style="background: #0066ff; color: white; padding: 12px; width: 48%; margin-right: 2%; border: none; cursor: pointer; border-radius: 5px;">Sign Up</button>
-    <button onclick="login()" style="background: #0066ff; color: white; padding: 12px; width: 48%; border: none; cursor: pointer; border-radius: 5px;">Log In</button>
-    <p id="auth-message" style="color: #ffcc00; text-align: center; margin-top: 10px;"></p>
-  </div>
-
-  <!-- ================= Container ================= -->
   <div class="container">
     <h1>Generate QR Code</h1>
     <input type="text" id="text-input" placeholder="Enter text or URL">
     <button onclick="generateQR()">Generate QR</button>
-
+    
     <div id="qr-preview"></div>
-    <button id="download-btn" style="display: none; background: #28a745;" onclick="downloadQR()">Download QR</button>
-
-    <div id="history">
-      <h2>QR History</h2>
-      <button onclick="clearHistory()" style="background: #dc3545;">Clear History</button>
-      <div id="history-list"></div>
-    </div>
-
-    <p style="text-align: center; margin-top: 30px;">©2026 QR Generator. All rights reserved.</p>
+    <button id="download-btn" style="display:none; background:#28a745;" onclick="downloadQR()">Download QR</button>
+    
+    <h2>History</h2>
+    <button style="background:#dc3545;" onclick="clearHistory()">Clear History</button>
+    <div id="history-list"></div>
   </div>
 
-  <script type="text/javascript" src="index.min.js"></script>
-  <script type="text/javascript" src="register-sw.js"></script>
+  <script>
+    function toggleMenu() {}
+    
+    function generateQR() {
+      const text = document.getElementById('text-input').value.trim();
+      if (!text) {
+        alert('Please enter text!');
+        return;
+      }
+      
+      const preview = document.getElementById('qr-preview');
+      preview.innerHTML = '';
+      
+      new QRCode(preview, {
+        text: text,
+        width: 256,
+        height: 256,
+        colorDark: "#000",
+        colorLight: "#fff"
+      });
+      
+      setTimeout(() => {
+        const canvas = preview.querySelector('canvas');
+        if (canvas) {
+          const dataURL = canvas.toDataURL('image/png');
+          document.getElementById('download-btn').style.display = 'block';
+          document.getElementById('download-btn').onclick = () => {
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'qrcode.png';
+            link.click();
+          };
+          
+          // Save to localStorage
+          let history = JSON.parse(localStorage.getItem('qrHistory')) || [];
+          history.unshift(text);
+          localStorage.setItem('qrHistory', JSON.stringify(history.slice(0, 20)));
+          loadHistory();
+        }
+      }, 100);
+    }
+    
+    function loadHistory() {
+      const history = JSON.parse(localStorage.getItem('qrHistory')) || [];
+      const list = document.getElementById('history-list');
+      list.innerHTML = '';
+      
+      history.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'history-item';
+        div.innerText = item;
+        list.appendChild(div);
+      });
+    }
+    
+    function clearHistory() {
+      if (confirm('Clear all history?')) {
+        localStorage.removeItem('qrHistory');
+        loadHistory();
+      }
+    }
+    
+    window.addEventListener('load', loadHistory);
+  </script>
 </body>
 </html>
