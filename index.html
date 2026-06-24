@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Generator</title>
 
-  <!-- QRCode JS -->
-  <script src="index.min.js"></script>
-  <!-- Supabase JS লাইব্রেরি -->
+  <!-- QRCode.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <link rel="stylesheet" href="style.css">
@@ -30,189 +30,45 @@
     </div>
 
     <div class="menu" id="menu">
+      <a href="index.html">Home</a>
       <a href="login.html">Login / Sign Up</a>
       <a href="profile.html">Profile</a>
-      <a href="index.html">Home</a>
-      <a href="QR Decoder.html">QR Decoder</a>
+      <a href="QR%20Decoder.html">QR Decoder</a>
       <a href="Mob.html">Mobile Simu</a>
       <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
       <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
       <span id="user-info" style="color: #ffcc00; margin-left: 20px;"></span>
-      <button id="logout-btn" style="display: none; background: #ff4444; color: white; border: none; padding: 8px 16px; cursor: pointer;" onclick="logout()">Log Out</button>
+      <button id="logout-btn" style="display: none; background: #ff4444; color: white; border: none; padding: 8px 16px; cursor: pointer; border-radius: 5px;" onclick="logout()">Log Out</button>
     </div>
   </nav>
 
   <!-- ================= Auth Section (যদি লগইন না থাকে) ================= -->
   <div id="auth-section" style="display: none; margin: 20px; padding: 20px; background: #222; border-radius: 10px; max-width: 500px; margin: 20px auto;">
     <h3>Log In or Sign Up to Save QR History</h3>
-    <input id="email" type="email" placeholder="Enter email" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px;">
-    <input id="password" type="password" placeholder="Enter password" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px;">
-    <button onclick="signUp()" style="background: #0066ff; color: white; padding: 12px; width: 48%; margin-right: 4%; border: none; cursor: pointer;">Sign Up</button>
-    <button onclick="login()" style="background: #0066ff; color: white; padding: 12px; width: 48%; border: none; cursor: pointer;">Log In</button>
+    <input id="email" type="email" placeholder="Enter email" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; box-sizing: border-box;">
+    <input id="password" type="password" placeholder="Enter password" style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; box-sizing: border-box;">
+    <button onclick="signUp()" style="background: #0066ff; color: white; padding: 12px; width: 48%; margin-right: 2%; border: none; cursor: pointer; border-radius: 5px;">Sign Up</button>
+    <button onclick="login()" style="background: #0066ff; color: white; padding: 12px; width: 48%; border: none; cursor: pointer; border-radius: 5px;">Log In</button>
     <p id="auth-message" style="color: #ffcc00; text-align: center; margin-top: 10px;"></p>
   </div>
 
   <!-- ================= Container ================= -->
   <div class="container">
-    <input type="text" id="text-input" placeholder="Input your text">
-    <button onclick="generateQR()">Generate the text</button>
+    <h1>Generate QR Code</h1>
+    <input type="text" id="text-input" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate QR</button>
 
     <div id="qr-preview"></div>
-    <button id="download-btn" style="display: none;" onclick="downloadQR()">Download now</button>
+    <button id="download-btn" style="display: none; background: #28a745;" onclick="downloadQR()">Download QR</button>
 
     <div id="history">
-      <h2>History</h2>
-      <button class="btn danger" onclick="clearHistory()">Clear all history</button>
+      <h2>QR History</h2>
+      <button onclick="clearHistory()" style="background: #dc3545;">Clear History</button>
       <div id="history-list"></div>
     </div>
 
-    <p style="text-align: center;">©2026 QR Generator. All rights reserved.</p>
+    <p style="text-align: center; margin-top: 30px;">©2026 QR Generator. All rights reserved.</p>
   </div>
-
-  <!-- ================= JS ================= -->
-  <script type="text/javascript">
-    // Supabase কনফিগারেশন
-    const supabaseUrl = 'https://ooihnyqssqubgshvakyg.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vaWhueXFzc3F1YmdzaHZha3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5MDIwNTIsImV4cCI6MjA4NjQ3ODA1Mn0.yZ0istNTaImVOF7M4aeO_OfEBx-xQKVvywVNJLavMD0';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-    // লগইন চেক + UI আপডেট
-    async function checkAuth() {
-      const { data: { session } } = await supabase.auth.getSession();
-      const userInfo = document.getElementById('user-info');
-      const logoutBtn = document.getElementById('logout-btn');
-      const authSection = document.getElementById('auth-section');
-
-      if (session) {
-        userInfo.innerText = `Welcome, ${session.user.email}`;
-        logoutBtn.style.display = 'inline-block';
-        authSection.style.display = 'none';
-        loadHistory(); // লগইন থাকলে হিস্ট্রি লোড করো
-      } else {
-        userInfo.innerText = '';
-        logoutBtn.style.display = 'none';
-        authSection.style.display = 'block';
-      }
-    }
-
-    // Sign Up
-    async function signUp() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const msg = document.getElementById('auth-message');
-
-      if (!email || !password) {
-        msg.innerText = 'Please enter email and password';
-        return;
-      }
-
-      const { error } = await supabase.auth.signUp({ email, password });
-      msg.innerText = error ? 'Error: ' + error.message : 'Account created! Check email to confirm.';
-    }
-
-    // Login
-    async function login() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const msg = document.getElementById('auth-message');
-
-      if (!email || !password) {
-        msg.innerText = 'Please enter email and password';
-        return;
-      }
-
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        msg.innerText = 'Login failed: ' + error.message;
-      } else {
-        msg.innerText = 'Welcome, ' + data.user.email;
-        checkAuth(); // UI আপডেট করো
-      }
-    }
-
-    // Log Out
-    async function logout() {
-      await supabase.auth.signOut();
-      checkAuth();
-    }
-
-    // QR সেভ করার ফাংশন
-    async function saveQRToDatabase(qrContent, qrType = 'text') {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        alert('Please log in to save your QR history.');
-        return;
-      }
-
-      const { error } = await supabase
-        .from('user_qr_history')
-        .insert({
-          user_id: session.user.id,
-          qr_content: qrContent,
-          qr_type: qrType
-        });
-
-      if (error) console.error('Save error:', error.message);
-    }
-
-    // হিস্ট্রি লোড করা (সার্ভার থেকে)
-    async function loadHistory() {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const { data, error } = await supabase
-        .from('user_qr_history')
-        .select('qr_content, created_at')
-        .eq('user_id', session.user.id)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Load error:', error.message);
-        return;
-      }
-
-      const historyList = document.getElementById('history-list');
-      historyList.innerHTML = '';
-      data.forEach(item => {
-        const div = document.createElement('div');
-        div.innerText = `${item.qr_content} - ${new Date(item.created_at).toLocaleString()}`;
-        historyList.appendChild(div);
-      });
-    }
-
-    // তোমার বিদ্যমান generateQR ফাংশন (আমি ধরে নিচ্ছি এটা আছে)
-    // এটাকে এভাবে আপডেট করো বা যোগ করো
-    function generateQR() {
-      const text = document.getElementById('text-input').value.trim();
-      if (!text) {
-        alert('Please enter text!');
-        return;
-      }
-
-      document.getElementById('qr-preview').innerHTML = '';
-      new QRCode(document.getElementById('qr-preview'), {
-        text: text,
-        width: 200,
-        height: 200
-      });
-
-      document.getElementById('download-btn').style.display = 'block';
-
-      // QR সেভ করো
-      saveQRToDatabase(text, 'text');
-
-      // হিস্ট্রি আপডেট করো
-      loadHistory();
-    }
-
-    // তোমার বিদ্যমান downloadQR, clearHistory ইত্যাদি ফাংশন রাখো
-    // (যদি না থাকে তাহলে পরে যোগ করো)
-
-    // পেজ লোড হলে চেক করো
-    window.onload = function() {
-      checkAuth();
-    };
-  </script>
 
   <script type="text/javascript" src="index.min.js"></script>
   <script type="text/javascript" src="register-sw.js"></script>

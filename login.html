@@ -7,57 +7,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
-  <style>
-    .auth-container {
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      text-align: center;
-    }
-    
-    .auth-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 1em;
-      box-sizing: border-box;
-    }
-    
-    .auth-container input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .auth-container button {
-      width: 48%;
-      padding: 12px;
-      margin: 10px 1%;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      background: #0066ff;
-      color: white;
-    }
-    
-    .auth-container button:hover {
-      background: #0052cc;
-    }
-    
-    #auth-message {
-      margin-top: 15px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      color: #ffcc00;
-    }
-  </style>
 </head>
 <body>
   <!-- ================= Navbar ================= -->
@@ -72,19 +21,20 @@
       <a href="index.html">Home</a>
       <a href="QR%20Decoder.html">QR Decoder</a>
       <a href="profile.html">Profile</a>
+      <a href="Mob.html">Mobile Simu</a>
       <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
       <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
     </div>
   </nav>
 
   <!-- ================= Auth Section ================= -->
-  <div class="auth-container">
-    <h2>স্বাগতম!</h2>
-    <input id="email" type="email" placeholder="আপনার ইমেইল লিখুন">
-    <input id="password" type="password" placeholder="আপনার পাসওয়ার্ড লিখুন">
-    <button onclick="login()">লগইন করুন</button>
-    <button onclick="signUp()">নতুন অ্যাকাউন্ট তৈরি করুন</button>
-    <div id="auth-message"></div>
+  <div class="container" style="max-width: 400px;">
+    <h1>Authentication</h1>
+    <input id="email" type="email" placeholder="Enter your email">
+    <input id="password" type="password" placeholder="Enter your password">
+    <button onclick="login()">Log In</button>
+    <button onclick="signUp()">Sign Up</button>
+    <div id="auth-message" style="margin-top: 15px; padding: 10px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; color: #ffcc00; display: none;"></div>
   </div>
 
   <script type="text/javascript" src="index.min.js"></script>

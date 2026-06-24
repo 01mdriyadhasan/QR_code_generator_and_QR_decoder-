@@ -1,172 +1,254 @@
+/* ================= Body ================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, black 0%, #2575fc 100%);
+    color: #fff;
+    margin: 0;
+    padding-top: 60px;
+    min-height: 100vh;
+}
 
-        /* ================= Body ================= */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, black 0%, #2575fc 100%);
-            color: #fff;
-            margin: 0;
-            padding-top: 60px;  /* <-- navbar height অনুযায়ী padding -->
-            min-height: 100vh;
-        }
+/* ================= Navbar ================= */
+.navbar {
+    height: 60px;
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
 
-        /* ================= Navbar ================= */
-        .navbar {
-            height: 60px;
-            background: #111;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 15px;
-            position: fixed;   /* <-- fixed করে top এ রাখলাম */
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;     /* <-- সব content এর উপরে দেখাবে */
-        }
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
+/* ================= Hamburger ================= */
+.hamburger {
+    width: 30px;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+}
 
-        /* ================= Hamburger ================= */
-        .hamburger {
-            width: 30px;
-            cursor: pointer;
-            display: none;
-        }
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: #fff;
+    width: 100%;
+    transition: 0.4s;
+    border-radius: 2px;
+}
 
-        .hamburger span {
-            display: block;
-            height: 3px;
-            background: #fff;
-            margin: 6px 0;
-            transition: 0.4s;
-        }
+.menu {
+    display: flex;
+    gap: 20px;
+    z-index: 999;
+    align-items: center;
+}
 
-        .menu {
-            display: flex;
-            gap: 20px;
-            z-index: 999;  /* <-- menu content এর উপরে থাকবে */
-        }
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s;
+}
 
-        .menu a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 16px;
-        }
+.menu a:hover {
+    color: #0066ff;
+}
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
 
-            .menu {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                width: 220px;
-                height: 100vh;
-                background: #000;
-                flex-direction: column;
-                padding: 20px;
-                transition: 0.4s;
-            }
+    .menu {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 220px;
+        height: calc(100vh - 60px);
+        background: #000;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        transition: right 0.4s ease;
+        overflow-y: auto;
+    }
 
-            .menu.active {
-                right: 0;
-            }
-        }
+    .menu.active {
+        right: 0;
+    }
 
-        /* ================= Container ================= */
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-            text-align: center;
-            margin: 20px auto;  /* <-- container centralize */
-        }
+    .menu a, .menu span, .menu button {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+/* ================= Container ================= */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: calc(100% - 60px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    text-align: center;
+    margin: 20px auto;
+}
 
-        input[type="text"], input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 1em;
-        }
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 0;
+}
 
-        button {
-            background: #fff;
-            color: #6a11cb;
-            border: none;
-            padding: 12px 20px;
-            margin: 10px 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
 
-        button:hover {
-            transform: scale(1.05);
-        }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
 
-        #qr-preview {
-            margin: 20px 0;
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
 
-        #history {
-            margin-top: 30px;
-            text-align: left;
-        }
-       
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
 
-        .history-item {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+button {
+    background: #fff;
+    color: #6a11cb;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: 1em;
+}
 
-        .history-item img {
-            width: 50px;
-            height: 50px;
-        }
-        .hist-actions{display:flex; gap:6px}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
-        #profile {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+button:active {
+    transform: scale(0.98);
+}
 
-        #profile-pic {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-            object-fit: cover;
-        }
-        }
+#qr-preview {
+    margin: 20px 0;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#history {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.history-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-all;
+    gap: 10px;
+}
+
+.history-item span {
+    flex: 1;
+    font-size: 0.95em;
+}
+
+.history-item button {
+    white-space: nowrap;
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+#profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+#profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+}
+
+#profile-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 10px 5px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 8px 3px;
+        font-size: 0.9em;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+}

@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your profile</title>
+  <title>Your Profile</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="/QR_code_generator_and_QR_decoder-/manifest.json">
 </head>
-
 <body>
   <!-- ================= Navbar ================= -->
   <nav class="navbar">
-    <div class="logo" style="text-align: center;">Your Profile</div>
+    <div class="logo">Your Profile</div>
 
     <div class="hamburger" onclick="toggleMenu()">
       <span></span>
@@ -20,27 +19,27 @@
     </div>
 
     <div class="menu" id="menu">
-      <a href="profile.html">Profile</a>
       <a href="index.html">Home</a>
-      <a href="QR Decoder.html">QR Decoder</a>
+      <a href="login.html">Login / Sign Up</a>
+      <a href="QR%20Decoder.html">QR Decoder</a>
+      <a href="Mob.html">Mobile Simu</a>
       <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
       <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
     </div>
   </nav>
 
   <div class="container">
+    <h1>Your Profile</h1>
     <div id="profile">
-      <img id="profile-pic" src="" alt="Profile">
-      <span id="profile-name">User1234</span>
+      <img id="profile-pic" src="https://via.placeholder.com/80?text=You" alt="Profile">
+      <span id="profile-name">User</span>
     </div>
 
-    <input type="text" id="name-input" placeholder="Enter Your Name ">
+    <input type="text" id="name-input" placeholder="Enter your name">
     <input type="file" id="pic-input" accept="image/*">
-    <button onclick="updateProfile()">Update your profile</button>
+    <button onclick="updateProfile()">Update Profile</button>
 
-    <p style="text-align: center;">©2026 QR Generator and Decoder. All rights reserved.</p>
-
-    <!-- এখানে তোমার বাকি QR জেনারেটরের কোড যোগ করো -->
+    <p style="text-align: center; margin-top: 30px;">©2026 QR Generator and Decoder. All rights reserved.</p>
   </div>
 
   <script type="text/javascript" src="profile.min.js"></script>

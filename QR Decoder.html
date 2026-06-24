@@ -11,7 +11,7 @@
 <body>
   <!-- ================= Navbar ================= -->
   <nav class="navbar">
-    <div class="logo">Decoder</div>
+    <div class="logo">QR Decoder</div>
 
     <div class="hamburger" onclick="toggleMenu()">
       <span></span>
@@ -21,40 +21,34 @@
 
     <div class="menu" id="menu">
       <a href="index.html">Home</a>
-      <a href="QR%20Decoder.html">QR Decoder</a>
+      <a href="login.html">Login / Sign Up</a>
       <a href="profile.html">Profile</a>
+      <a href="Mob.html">Mobile Simu</a>
       <a href="https://www.facebook.com/share/17i615KqwP/">Services</a>
       <a href="https://m.me/md.riyad.hasan.868680">Contact</a>
     </div>
   </nav>
 
   <div class="container">
-    <h1>QR Code Scanner & Decoder (WiFi Enhanced)</h1>
+    <h1>QR Code Scanner & Decoder</h1>
 
     <div id="reader"></div>
 
     <!-- Camera control button -->
-    <div style="margin-top:8px;">
+    <div style="margin-top: 15px;">
       <button id="toggle-camera-btn" onclick="toggleCamera()">Turn Camera Off</button>
     </div>
 
     <div id="status">Camera opening......</div>
-
     <div id="result">Let's see result here...</div>
 
-    <button id="copyBtn" style="display:none;">Copy text</button>
+    <button id="copyBtn" style="display: none;">Copy text</button>
     <br>
 
     <input type="file" id="qr-file" accept="image/*">
-    <!-- Upload file button -->
     <button id="upload-btn" onclick="uploadAndScan()">Upload and Scan</button>
 
-    <p style="text-align: center;">©2026 QR Code Decoder. All rights reserved.</p>
-     <p style="text-align: centre;">The Website Created By <a href="https://www.facebook.com/share/17i615KqwP/">Md Riyad Hasan
-    <!--Tab to edit-->
-  </a>
-  <!--Tab to edit-->
-</p>
+    <p style="text-align: center; margin-top: 30px;">©2026 QR Code Decoder. All rights reserved.</p>
   </div>
 
   <script type="text/javascript" src="decoder.mi.js"></script>

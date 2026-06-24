@@ -5,46 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mobile Simulator</title>
   <style>
-    body { margin: 0; padding: 20px; background: #111; font-family: Arial, sans-serif; color: #fff; min-height: 100vh; display:flex; flex-direction:column; align-items:center; }
-    .container { text-align:center; margin-bottom:20px; }
-    input, button { padding:10px 12px; font-size:15px; border-radius:8px; border:none; }
-    .phone-frame { width:380px; height:780px; max-width:95vw; background:#000; border:16px solid #000; border-radius:55px; position:relative; overflow:hidden; display:none; margin-bottom:12px; }
-    .phone-frame.visible { display:block; }
-    iframe { width:100%; height:100%; border:none; display:block; background:#fff; }
-    /* bottom dock inside phone */
-    .phone-dock { position:absolute; left:0; right:0; bottom:0; padding:8px; box-sizing:border-box; display:flex; gap:8px; background: rgba(0,0,0,0.6); align-items:center; }
-    .phone-dock input { flex:1; padding:8px; border-radius:8px; border:none; }
-    .phone-dock button { background:#0066ff; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; }
-    .notice { color:#ffdd57; margin-top:6px; max-width:380px; text-align:center; }
-    .open-btn { background:#00aa66; color:#fff; padding:6px 8px; border-radius:6px; border:none; cursor:pointer; margin-left:8px; }
-    .toggle-phone { margin-top:10px; background:#444; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; }
+    body { margin: 0; padding: 20px; background: #111; font-family: Arial, sans-serif; color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    .container { text-align: center; margin-bottom: 20px; }
+    h1 { margin: 0; font-size: 2em; }
+    p { margin: 10px 0; }
+    input, button { padding: 10px 12px; font-size: 15px; border-radius: 8px; border: none; }
+    input { width: 300px; max-width: 90%; }
+    button { background: #0066ff; color: #fff; padding: 10px 16px; cursor: pointer; }
+    button:hover { background: #0052cc; }
+    .phone-frame { width: 380px; height: 780px; max-width: 95vw; background: #000; border: 16px solid #000; border-radius: 55px; position: relative; overflow: hidden; display: none; margin-bottom: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
+    .phone-frame.visible { display: block; }
+    iframe { width: 100%; height: 100%; border: none; display: block; background: #fff; }
+    .phone-dock { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px; box-sizing: border-box; display: flex; gap: 8px; background: rgba(0, 0, 0, 0.6); align-items: center; }
+    .phone-dock input { flex: 1; padding: 8px; margin: 0; }
+    .phone-dock button { padding: 8px 12px; margin: 0; }
+    .notice { color: #ffdd57; margin-top: 15px; max-width: 380px; text-align: center; font-size: 0.9em; }
+    .toggle-phone { background: #444; margin-top: 10px; }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h1>Mobile Simulator</h1>
-    <p>Open the phone simulator, enter a URL in the dock at the bottom of the phone, and press Load.</p>
+    <p>Enter a URL below and load it in the phone simulator</p>
     <button class="toggle-phone" onclick="togglePhone()">Open/Close Phone</button>
-    <div id="noticeTop" class="notice" style="display:none"></div>
+    <div id="noticeTop" class="notice" style="display: none;"></div>
   </div>
 
-  <div class="phone-frame" id="phone" aria-label="phone-simulator">
-    <iframe id="simIframe" sandbox="allow-scripts allow-forms allow-popups"></iframe>
-
-    <!-- bottom dock INSIDE phone frame -->
-    <div class="phone-dock" id="phoneDock">
-      <input id="phoneUrlDock" type="text" placeholder="https://example.com" value="https://example.com" aria-label="URL" />
-      <button id="phoneLoadDock">Load</button>
+  <div class="phone-frame" id="phone">
+    <iframe id="simIframe" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+    <div class="phone-dock">
+      <input id="phoneUrlDock" type="text" placeholder="https://example.com" value="https://example.com" />
+      <button onclick="loadIntoPhone()">Load</button>
     </div>
   </div>
 
-  <div id="noticeBelow" class="notice" style="display:none;"></div>
+  <div id="noticeBelow" class="notice" style="display: none;"></div>
 
   <script>
-    function isValidHttpUrl(s) {
-      try { const u = new URL(s); return u.protocol === "http:" || u.protocol === "https:"; }
-      catch(e){ return false; }
+    function isValidHttpUrl(str) {
+      try {
+        const u = new URL(str);
+        return u.protocol === 'http:' || u.protocol === 'https:';
+      } catch (e) {
+        return false;
+      }
     }
 
     function showNotice(html) {
@@ -52,22 +56,37 @@
       n.style.display = 'block';
       n.innerHTML = html;
     }
+
     function hideNotice() {
       const n = document.getElementById('noticeBelow');
       n.style.display = 'none';
       n.innerHTML = '';
     }
 
-    function loadIntoPhone(url) {
+    function loadIntoPhone() {
+      const urlInput = document.getElementById('phoneUrlDock');
+      const url = urlInput ? urlInput.value.trim() : '';
+
       hideNotice();
-      if (!url) { alert('Please enter a URL'); return; }
-      if (url.trim().toLowerCase().startsWith('javascript:')) { alert('javascript: URLs are not allowed'); return; }
-      if (!isValidHttpUrl(url)) { alert('Please enter a valid http:// or https:// URL'); return; }
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      if (url.toLowerCase().startsWith('javascript:')) {
+        alert('JavaScript URLs are not allowed');
+        return;
+      }
+      if (!isValidHttpUrl(url)) {
+        alert('Please enter a valid http:// or https:// URL');
+        return;
+      }
 
       const iframe = document.getElementById('simIframe');
       let loaded = false;
-
-      iframe.onload = () => { loaded = true; hideNotice(); };
+      iframe.onload = () => {
+        loaded = true;
+        hideNotice();
+      };
 
       iframe.src = url;
       const phone = document.getElementById('phone');
@@ -76,34 +95,23 @@
 
       setTimeout(() => {
         if (!loaded) {
-          showNotice('This site may not allow being loaded in an iframe (blocked by X-Frame-Options or CSP). ' +
-            '<button class="open-btn" onclick="window.open(' + "'" + url + "'" + ', \'_blank\')">Open in new tab</button>');
+          showNotice('This site may not allow being loaded in an iframe. Try opening it in a new tab instead.');
         }
       }, 3000);
     }
 
-    // hook up dock controls
     const dockInput = document.getElementById('phoneUrlDock');
-    const dockBtn = document.getElementById('phoneLoadDock');
-
-    dockBtn.addEventListener('click', () => {
-      loadIntoPhone(dockInput.value.trim());
-    });
-    dockInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') loadIntoPhone(dockInput.value.trim()); });
+    if (dockInput) {
+      dockInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') loadIntoPhone();
+      });
+    }
 
     function togglePhone() {
       const phone = document.getElementById('phone');
       phone.classList.toggle('visible');
       if (phone.classList.contains('visible')) phone.scrollIntoView({ behavior: 'smooth' });
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // nothing extra for now
-    });
   </script>
-
-  <!-- Google CSE script (kept as requested) -->
-  <script async src="https://cse.google.com/cse.js?cx=f1c1290cf49ff435b"></script>
-
 </body>
 </html>
