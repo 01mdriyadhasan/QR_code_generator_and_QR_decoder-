@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<haed>
+<title>Md Riyad Hasan</title>
+</haed>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2563eb;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Hamburger Icon */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Dropdown Menu */
+        .menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .menu.show {
+            display: flex;
+        }
+
+        .menu a {
+            padding: 15px 20px;
+            color: #1f2937;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s;
+        }
+
+        .menu a:hover {
+            background-color: #f3f4f6;
+            padding-left: 30px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .menu {
+                position: static;
+                display: flex;
+                flex-direction: row;
+                box-shadow: none;
+                width: auto;
+                background: transparent;
+            }
+            .menu a {
+                border: none;
+                color: white;
+            }
+            .hamburger { display: none; }
+        }
+    </style>
+<body>
+<nav class="navbar">
+        <div class="logo">আমার সাইট</div>
+        
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Menu -->
+        <div class="menu" id="menu">
+			<a href="encod.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="profile.html">Profile</a>
+      <a href="decoder.html">Decoder</a>
+      <a href="Mob.html">Mobail Simu</a>
+        </div>
+    </nav>
+
+
+<h2 align="center">Welcome to <a href="https://riyad24.gamer.gd">Riyad 24</a></h2>
+<p align="center">
+<img src="mypf.jpg" align="center" alt="image" height="150" width="150"></p>
+<p align="center">My name is  <strong><ins>MD RIYAD HASAN</ins></strong></p>
+<p align="center">From  <strong>Gabtali, Bogura </strong>
+<p align="center">I have passed HSC from <b>Govt Sah Sultan College</b></p>
+<p align="center">I have also passed PSC from <b>Torof Sartaj Govt Primary School </b><br>And HSC from <b>Gabtali Pilot High School</b></p>
+<br>
+<br>
+<br>
+<p align="center">Contact with me on <a href="https://m.me/md.riyad.hasan.868680">Messager</a> or phone number <a href="01892564273">☎️☎️📞</a></p>
+
+
+
+<script>
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('show');
+            
+            // Optional: Animate hamburger to X
+            const spans = hamburger.querySelectorAll('span');
+            if (menu.classList.contains('show')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
